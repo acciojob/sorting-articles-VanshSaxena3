@@ -1,35 +1,35 @@
 const bands = [
-  'The Plot in You',
-  'The Devil Wears Prada',
-  'Pierce the Veil',
-  'Norma Jean',
-  'The Bled',
-  'Say Anything',
-  'The Midway State',
-  'We Came as Romans',
-  'Counterparts',
-  'Oh, Sleeper',
-  'A Skylit Drive',
-  'Anywhere But Here',
-  'An Old Dog'
+  "The Plot in You",
+  "The Devil Wears Prada",
+  "Pierce the Veil",
+  "Norma Jean",
+  "The Bled",
+  "Say Anything",
+  "The Midway State",
+  "We Came as Romans",
+  "Counterparts",
+  "Oh, Sleeper",
+  "A Skylit Drive",
+  "Anywhere But Here",
+  "An Old Dog"
 ];
 
-// function to remove articles for sorting
+// remove articles for sorting
 function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
+  return name.replace(/^(a |an |the )/i, "").trim();
 }
 
-// sort bands ignoring articles
-bands.sort((a, b) => {
-  let bandA = stripArticle(a).toLowerCase();
-  let bandB = stripArticle(b).toLowerCase();
-  return bandA.localeCompare(bandB);
+// sort bands
+const sortedBands = bands.sort((a, b) => {
+  if (stripArticle(a) > stripArticle(b)) return 1;
+  if (stripArticle(a) < stripArticle(b)) return -1;
+  return 0;
 });
 
-// display in UI
+// render to DOM
 const ul = document.getElementById("band");
 
-bands.forEach(band => {
+sortedBands.forEach(band => {
   const li = document.createElement("li");
   li.textContent = band;
   ul.appendChild(li);
